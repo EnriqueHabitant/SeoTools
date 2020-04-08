@@ -1,0 +1,38 @@
+@charset "utf-8";
+// @import "../../grunt/node_modules/bulma/bulma.sass";
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,200,300,400,500,600,700&display=swap');
+
+// // Set your brand colors
+// $purple: #c007ff;
+// $pink: #fe12c3;
+// $yellow: #fff000;
+// $red: #ff157d;
+// $green: #00fa9e;
+// $dark-green: #00fbce;
+// $blue: #01fffd;
+// $dark-gray: #1a1a1a;
+// $light-gray: #a3a3a3;
+// $white: #ffffff;
+// $black: #000000;
+// $border-color: #8c8c8c;
+
+// // Update Bulma's global variables
+// // $font-family: 'IBM Plex Sans', sans-serif;
+$family-sans-serif: "Poppins", sans-serif;
+// $grey-dark: $dark-gray;
+// $grey-light: $light-gray;
+// $primary: $white;
+// $link: $green;
+// $widescreen-enabled: false;
+// $fullhd-enabled: false;
+
+// // Update some of Bulma's component variables
+// $body-background-color: $dark-gray;
+// $control-border-width: 2px;
+// $input-border-color: $border-color;
+// $input-shadow: none;
+
+// Import only what you need from Bulma
+@import "../../grunt/node_modules/bulma/bulma.sass";
