@@ -1,0 +1,48 @@
+.o-button {
+  height: 40px;
+  padding: 10px 16px;
+  color: $white;
+  background-color: $verde;
+  border: 2px solid $verde;
+  border-radius: 4px;
+  cursor: pointer;
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include font($base-font-size, $font-family-primary, $carbon, $font-weight-medium, $line-height: 100%);
+
+  @include m(alt) {
+    border: 2px solid $verde;
+    background-color: transparent;
+    color: $verde;
+  }
+
+  @include m(danger) {
+    border: 2px solid $danger;
+    background-color: $danger;
+  }
+
+  @include m(danger-light) {
+    border: 2px solid $danger-light;
+    background-color: $danger-light;
+    color: $danger;
+  }
+
+  @include m(warning) {
+    border: 2px solid $warning;
+    background-color: $warning;
+    color: $carbon;
+  }
+
+  @include m(dark) {
+    border: 2px solid $carbon;
+    background-color: $carbon;
+    color: $white;
+  }
+
+  @include m(dark-alt) {
+    border: 2px solid $white;
+    background-color: $white;
+    color: $carbon;
+  }
+}

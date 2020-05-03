@@ -1,0 +1,54 @@
+.c-navbar {
+  width: 100%;
+  height: 56px;
+  background-color: $carbon;
+  @include flexbox;
+  @include align-items(center);
+  
+  @include e(container) {
+    @include flexbox;
+    @include justify-content(space-between);
+  }
+
+  @include e(logo) {
+    width: 150px;
+    @include flexbox;
+    @include justify-content(flex-start);
+    @include align-items(center);
+
+    a {
+      width: 100%;
+    }
+  }
+
+  @include e(list) {
+    list-style: none;
+    @include flexbox;
+
+    li {
+      margin-right: 20px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+      
+      a {
+        text-decoration: none;
+        color: $white;
+      }
+    }
+  }
+
+  @include e(buttons) {
+    @include flexbox;
+    @include align-items(center);
+
+    a {
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

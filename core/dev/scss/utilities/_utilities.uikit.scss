@@ -1,0 +1,88 @@
+.u-uikit {
+
+  // COLORS
+  @include e(colors) {
+
+    @each $color, $color_value in $colors {
+      & .style-#{$color} {
+        background-color: $color_value !important;
+      }
+    }
+
+    @each $color, $color_value in $theme-colors {
+      & .style-#{$color} {
+        background-color: $color_value !important;
+      }
+    }
+
+    @each $color, $color_value in $grayscale-colors {
+      & .style-grayscale-#{$color} {
+        background-color: $color_value !important;
+      }
+    }
+
+    @each $color, $color_value in $additional-colors {
+      & .style-color-#{$color} {
+        background-color: $color_value !important;
+      }
+    }
+
+    @each $color, $color_value in $social-colors {
+      & .style-color-social-#{$color} {
+        background-color: $color_value !important;
+      }
+    }
+  }
+
+  // FONTS
+  @include e(fonts) {
+
+    .style-font-primary {
+      font-family: $font-family-primary;
+    }
+
+    .style-font-secondary {
+      font-family: $font-family-secondary;
+    }
+
+    .style-font-third {
+      font-family: $font-family-third;
+    }
+
+    .thin {
+      font-weight: $font-weight-thin;
+    }
+
+    .extralight {
+      font-weight: $font-weight-extralight;
+    }
+
+    .light {
+      font-weight: $font-weight-light;
+    }
+
+    .regular {
+      font-weight: $font-weight-regular;
+    }
+
+    .medium {
+      font-weight: $font-weight-medium;
+    }
+
+    .semibold {
+      font-weight: $font-weight-semibold;
+    }
+
+    .bold {
+      font-weight: $font-weight-bold;
+    }
+
+    .extrabold {
+      font-weight: $font-weight-extrabold;
+    }
+
+    .black {
+      font-weight: $font-weight-black;
+    }
+  }
+}

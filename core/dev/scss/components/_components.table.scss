@@ -1,0 +1,70 @@
+.c-table {
+  @include e(res) {
+    @include e(buttons) {
+      margin-bottom: 20px;
+      @include flexbox;
+
+      button {
+        margin-right: 8px;
+      }
+    }
+
+    @include e(table) {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+
+      thead {
+        @include font(14px, $font-family-primary, $carbon, $font-weight-regular, $line-height: 100%);
+        tr {
+          th {
+            padding: 12px 5px;
+
+            &:first-child {
+              text-align: left;
+              width: 250px;
+            }
+          }
+        }
+      }
+
+      tbody {
+        @include font($base-font-size, $font-family-secondary, $carbon, $font-weight-regular, $line-height: 100%);
+        tr {
+          td {
+            border-top: 1px solid $gris;
+            padding: 12px 5px;
+            text-align: center;
+
+            &:first-child {
+              width: 250px;
+              text-align: left;
+            }
+          }
+
+          &.is-selected {
+            background-color: $verde-azul;
+          }
+        }
+      }
+    }
+  }
+
+  &.is-active {
+    display: block;
+    @include animation(1s, slide-in-right);
+  }
+
+  @include m(none) {
+    opacity: 0;
+    display: none;
+  }
+
+  @include m(white) {
+    color: $white !important;
+
+    tr {
+      color: $white;
+    }
+  }
+}

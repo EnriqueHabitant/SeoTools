@@ -1,0 +1,95 @@
+/* Box sizing */
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+  -moz-box-sizing: $box-model; // Firefox <= 19
+  box-sizing: $box-model;
+}
+
+/* Aplica un valor de opacidad entre 0 y 1 */
+@mixin opacity($opacity, $important: null) {
+  opacity: $opacity $important;
+  filter: alpha(opacity=$opacity * 100) $important; //IE8
+}
+
+/* Añade una transición */
+@mixin transition($time: 0.3s, $function: ease-in-out, $property: all) {
+  -webkit-transition: $property $time $function;
+  -moz-transition: $property $time $function;
+  -o-transition: $property $time $function;
+  transition: $property $time $function;
+}
+
+/* Deshabilita la selección de un usuario en el elemento que se aplica */
+@mixin user-no-select {
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+}
+
+/* Permite colocar imágenes de fondo responsive */
+@mixin background-size {
+  background-position: center !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+
+  @include mq(mobile) {
+    background-attachment: scroll;
+  }
+}
+
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin selection($background-color, $color: #fff) {
+  ::-moz-selection { /* Code for Firefox */
+    background: $background-color;
+    color: $color;
+  }
+
+  ::selection {
+    background: $background-color;
+    color: $color;
+  }
+}
+
+@mixin add-box-shadow($hoffset, $voffset, $blur, $spread, $color) {
+  box-shadow: $hoffset $voffset $blur $spread $color;
+  -moz-box-shadow: $hoffset $voffset $blur $spread $color;
+  -webkit-box-shadow: $hoffset $voffset $blur $spread $color;
+  -khtml-box-shadow: $hoffset $voffset $blur $spread $color;
+}
+
+@mixin pixel-hover {
+  @include mq(mobile-wide, min) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin pixel-active {
+  @include mq(mobile-wide, min) {
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+@mixin pixel-hover-full {
+  @include mq(mobile-wide, min) {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}

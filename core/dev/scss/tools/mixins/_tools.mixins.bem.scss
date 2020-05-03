@@ -1,0 +1,30 @@
+/* ==========================================================================
+    BEM mixins
+========================================================================== */
+
+/// Block Element
+/// @access public
+/// @param {String} $element - Element's name
+@mixin e($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+
+/// Block Modifier
+/// @access public
+/// @param {String} $modifier - Modifier's name
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+/// Block SubElement
+/// @access public
+/// @param {String} $element - Element's name
+@mixin se($selector, $element) {
+  & .#{$selector}__#{$element} {
+    @content;
+  }
+}

@@ -1,0 +1,4 @@
+.o-subtitle {
+  margin-top: 0;
+  @include font($base-font-size, $font-family-primary, $carbon, $font-weight-medium, $line-height: 120%);
+}

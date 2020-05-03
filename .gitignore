@@ -125,4 +125,5 @@ dmypy.json
 
 
 # Node
-/core/grunt/node_modules
+/*/grunt/node_modules
+/node_modules

@@ -1,0 +1,31 @@
+/* ==========================================================================
+    Body styles
+   ========================================================================== */
+
+@include selection($color-primary);
+
+body {
+  background-color: $white;
+  color: $color-font-primary;
+  font-family: $font-family-primary;
+  font-size: $base-font-size;
+  font-weight: $font-weight-regular;
+  line-height: 1;
+  margin: 0 !important;
+  overflow-x: hidden;
+  position: relative;
+
+  @include text-rendering-antialiased;
+
+  @include mq(mobile) {
+    font-size: $mobile-base-font-size;
+  }
+}
+
+*:focus {
+  outline: 0;
+}
+
+strong {
+  font-weight: $font-weight-bold;
+}

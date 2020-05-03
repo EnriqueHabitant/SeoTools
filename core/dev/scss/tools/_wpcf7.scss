@@ -1,0 +1,121 @@
+.wpcf7-form {
+    $md-checkbox-margin: 0;
+    $md-checkbox-checked-color: $color-primary;
+    $md-checkbox-border-color: $color-primary;
+
+    $md-checkbox-size: 18px;
+    $md-checkbox-padding: 4px;
+
+    $md-checkmark-width: 2px;
+    $md-checkmark-color: #fff;
+
+    .md-checkbox {
+        position: relative;
+        margin: $md-checkbox-margin;
+        color: $white;
+        cursor: pointer;
+        margin-bottom: 7px;
+
+        &.no-margin-bottom {
+            margin-bottom: 0;
+        }
+
+        + .parsley-errors-list {
+            margin-top: 0;
+            margin-bottom: 0;
+            &.filled {
+                margin-top: 10px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @include mq(tablet-wide) {
+            margin: 10px;
+        }
+
+        label {
+            position: relative;
+            display: inline !important;
+            cursor: pointer;
+            pointer-events: auto;
+            left: 15px;
+            top: -2px;
+            @include user-no-select;
+            @include font(12px, $font-family-secondary, #6B726F, $font-weight-regular, 18px);
+
+            a {
+                color: #6B726F;
+                text-decoration: underline;
+            }
+
+            &::before,
+            &::after {
+                content: "";
+                position: absolute;
+                left: -33px;
+                top: -3px;
+            }
+
+            &::before {
+                // box
+                width: $md-checkbox-size;
+                height: $md-checkbox-size;
+                background: transparent;
+                border: 1px solid #6B726F;
+                border-radius: 2px;
+                cursor: pointer;
+                transition: background 0.3s;
+            }
+        }
+
+        input[type="checkbox"] {
+            outline: 0;
+            margin-right: 0;
+            cursor: pointer;
+            @include opacity(0);
+
+            &:checked {
+                + label::before {
+                    background: $md-checkbox-checked-color;
+                    border: none;
+                }
+                + label::after {
+                    $md-checkmark-size: $md-checkbox-size - 2*$md-checkbox-padding;
+                    transform: rotate(-45deg);
+                    top: ($md-checkbox-size / 2) - ($md-checkmark-size / 4) - $md-checkbox-size/6;
+                    left: -28px;
+                    width: $md-checkmark-size;
+                    height: $md-checkmark-size / 2;
+                    border: $md-checkmark-width solid $md-checkmark-color;
+                    border-top-style: none;
+                    border-right-style: none;
+                }
+            }
+        }
+
+        > div {
+            display: -webkit-box !important;
+            display: -webkit-flex !important;
+            display: -moz-flex !important;
+            display: -ms-flexbox !important;
+            display: flex !important;
+        }
+    }
+
+    .col {
+        @include mq(mobile-wide) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+
+.wpcf7-validation-errors,
+.ajax-loader,
+.wpcf7-response-output {
+    display: none !important;
+}
+
+.wpcf7-list-item {
+    margin: 0 !important;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "habitantSeoTools",
+  "version": "1.0.0",
+  "description": "habitantSeoTools",
+  "main": "Gruntfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "bulma": "^0.8.1",
+    "grunt": "^1.1.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-less": "^2.0.0",
+    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-sass": "^3.1.0",
+    "node-sass": "^4.13.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnriqueHabitant/habitantSeoTools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnriqueHabitant/habitantSeoTools/issues"
+  },
+  "homepage": "https://github.com/EnriqueHabitant/habitantSeoTools#readme"
+}

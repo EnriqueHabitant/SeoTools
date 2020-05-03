@@ -1,0 +1,17 @@
+.o-filter {
+  margin-top: 15px;
+  width: 655px;
+
+  @include e(group) {
+    margin-top: 8px;
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+
+    input,
+    select {
+      width: 180px;
+      margin-right: 5px;
+    }
+  }
+}

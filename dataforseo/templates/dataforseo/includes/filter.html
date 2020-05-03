@@ -1,0 +1,18 @@
+<div class="o-filter__group js-filter">
+  <div>
+    <select class="js-field" onChange="changeOperators(this)">
+      <option value="key">Keyword</option>
+      <option value="search_volume">Search Volume</option>
+      <option value="cpc">cpc</option>
+      <option value="competition">Competition</option>
+    </select>
+  </div>
+  <div>
+    <select class="js-operator">
+      <option value="like">contiene</option>
+      <option value="not_like">no contiene</option>
+    </select>
+  </div>
+  <input type="text" class="input js-value" placeholder="valor">
+  <button class="o-button o-button--danger-light" onClick="removeFilter(this)">Eliminar</button>
+</div>

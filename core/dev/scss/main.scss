@@ -1,38 +1,52 @@
-@charset "utf-8";
-// @import "../../grunt/node_modules/bulma/bulma.sass";
-// Import a Google Font
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,200,300,400,500,600,700&display=swap');
+// Tools and settings
+@import "settings/settings.variables";
+@import "tools/mixins/tools.mixins.animations";
+@import "tools/mixins/tools.mixins.bem";
+@import "tools/mixins/tools.mixins.box-model";
+@import "tools/mixins/tools.mixins.fonts";
+@import "tools/mixins/tools.mixins.general";
+@import "tools/mixins/tools.mixins.hacks";
+@import "tools/mixins/tools.mixins.misc";
+@import "tools/mixins/tools.mixins.social";
+@import "settings/settings.colors";
+@import "settings/settings.fonts";
+@import "settings/settings.mq";
+@import "settings/settings.sizes";
+@import "tools/flexbox";
+@import "tools/gradients";
+@import "tools/hamburgers/hamburgers";
+@import "tools/icons/general/style";
+@import "tools/icons/style";
 
-// // Set your brand colors
-// $purple: #c007ff;
-// $pink: #fe12c3;
-// $yellow: #fff000;
-// $red: #ff157d;
-// $green: #00fa9e;
-// $dark-green: #00fbce;
-// $blue: #01fffd;
-// $dark-gray: #1a1a1a;
-// $light-gray: #a3a3a3;
-// $white: #ffffff;
-// $black: #000000;
-// $border-color: #8c8c8c;
+// Generic
+@import "generic/generic.normalize";
+@import "generic/generic.box-sizing";
+@import "generic/generic.body";
+@import "generic/generic.reset";
 
-// // Update Bulma's global variables
-// // $font-family: 'IBM Plex Sans', sans-serif;
-$family-sans-serif: "Poppins", sans-serif;
-// $grey-dark: $dark-gray;
-// $grey-light: $light-gray;
-// $primary: $white;
-// $link: $green;
-// $widescreen-enabled: false;
-// $fullhd-enabled: false;
+// Generic
+@import "elementos/elementos.forms";
 
-// // Update some of Bulma's component variables
-// $body-background-color: $dark-gray;
-// $control-border-width: 2px;
-// $input-border-color: $border-color;
-// $input-shadow: none;
+//Objects
+@import "objects/objects.buttons";
+@import "objects/objects.headings";
+@import "objects/objects.subtitle";
+@import "objects/objects.section";
+@import "objects/objects.filter";
+@import "objects/objects.tabs";
 
-// Import only what you need from Bulma
-@import "../../grunt/node_modules/bulma/bulma.sass";
+// Components
+@import "components/components.header";
+@import "components/components.navbar";
+@import "components/components.forms";
+@import "components/components.table";
+@import "components/components.modal";
+// Utilities
+@import "utilities/utilities.animations";
+@import "utilities/utilities.util";
+
+// Other Tools
+@import "tools/lity";
+@import "tools/parsley";
+@import "tools/wpcf7";
+

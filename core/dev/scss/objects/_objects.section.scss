@@ -1,0 +1,12 @@
+.o-section {
+  padding: 60px 0;
+
+  @include e(container) {
+    width: 100%;
+  }
+
+  @include m(bg-dark) {
+    background-color: $carbon;
+    color: $white !important;
+  }
+}

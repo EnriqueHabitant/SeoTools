@@ -6,8 +6,8 @@ import json, datetime, calendar
 from operator import itemgetter
 from django.template.base import Variable
 from .dataforseo_functions import related_keywords_v3, keyword_suggestions_v3
-from .models import KeywordSearch
-from .forms import KeywordFinderForm
+from .models import KeywordSearch, KeywordBulk
+from .forms import KeywordFinderForm, KeywordBulkForm
 
 # Create your views here.
 class KeywordFinderCreateView(CreateView):
@@ -17,7 +17,7 @@ class KeywordFinderCreateView(CreateView):
 
     def get_success_url(self, *args, **kwargs):        
         print(self.object.pk)
-        return reverse_lazy('dataforseo:keywordsearch_detail', kwargs={'pk':self.object.pk})
+        return reverse_lazy('dataforseo:keywordfinder_detail', kwargs={'pk':self.object.pk})
 
 class KeywordFinderDetailView(DetailView):
     model = KeywordSearch
@@ -43,18 +43,20 @@ class KeywordFinderDetailView(DetailView):
         # Cargando JSON.
         res = json.loads(context['object'].result)
         
-
         for items in res['result']:
-            for item in items['items']:
-                index = items['items'].index(item)
-                if 'keyword_data' in item:
-                    items['items'][index] = item['keyword_data']
+            if 'items' in items:
+                for item in items['items']:
+                    index = items['items'].index(item)
+                    if 'keyword_data' in item:
+                        items['items'][index] = item['keyword_data']
 
-                for a in items['items'][index]['keyword_info']['monthly_searches']:
-                    date_str = "1"+"/"+str(a['month'])+"/"+str(a['year'])
-                    format_str = '%d/%m/%Y'
-                    datetime_obj = datetime.datetime.strptime(date_str, format_str)
-                    a["date"]= datetime_obj
+                    for a in items['items'][index]['keyword_info']['monthly_searches']:
+                        date_str = "1"+"/"+str(a['month'])+"/"+str(a['year'])
+                        format_str = '%d/%m/%Y'
+                        datetime_obj = datetime.datetime.strptime(date_str, format_str)
+                        a["date"]= datetime_obj
+            else:
+                items['items'] = None
 
         count = 1
         meses_atras = list()
@@ -68,10 +70,38 @@ class KeywordFinderDetailView(DetailView):
         context['resultado'] = res['result']
         return context
     
+# KewordList
+class KeywordBulkCreateView(CreateView):
+    model = KeywordBulk
+    template_name = "dataforseo/keywordbulk_form.html"
+    form_class = KeywordBulkForm
 
-def related_keywords(request, keyword, country_code, language_code, depth, limit):
+    def get_success_url(self, *args, **kwargs):        
+        print(self.object.pk)
+        return reverse_lazy('dataforseo:keywordfinder_detail', kwargs={'pk':self.object.pk})
+
+
+# Vistas de Dataforseo
+def keyword_research(request, keyword, country_code, language_code, depth, limit, filters):
     resultados = dict()
     resultados['result'] = list()
-    resultados['result'].append(related_keywords_v3(keyword, country_code, language_code, depth, limit))
-    resultados['result'].append(keyword_suggestions_v3(keyword, country_code, language_code, limit))
+    filtros = list()
+
+    if filters != 'False':
+        for row in filters.split('&&'):
+            filtros.append(row.split(','))
+            filtros.append('and')
+        filtros.pop()
+    else:
+        filtros = False
+
+    resultados['result'].append(keyword_suggestions_v3(keyword, country_code, language_code, limit, filtros))
+    resultados['result'].append(related_keywords_v3(keyword, country_code, language_code, depth, limit, filtros))
     return  JsonResponse(resultados)
+
+# Template del includes
+class Filter(TemplateView):
+    template_name = "dataforseo/includes/filter.html"
+
+class Loading(TemplateView):
+    template_name = "dataforseo/includes/loading.html"

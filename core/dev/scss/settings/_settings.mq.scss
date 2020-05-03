@@ -1,0 +1,49 @@
+// Media queries
+
+$breakpoints: (
+  "mobile": 400px,
+  "mobile-wide": 480px,
+  "phablet": 560px,
+  "tablet-small": 640px,
+  "tablet": 768px,
+  "tablet-wide": 1024px,
+  "desktop": 1248px,
+  "desktop-wide": 1440px
+);
+
+@mixin mq($width, $type: max) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  } @else {
+    @media only screen and (max-width: $width) {
+      @content;
+    }
+  }
+}
+
+$breakpoints_vertical: (
+  "mobile": 500px,
+  "laptop": 768px,
+);
+
+@mixin mq-h($height, $type: max) {
+  @if map_has_key($breakpoints_vertical, $height) {
+    $height: map_get($breakpoints_vertical, $height);
+    @if $type == max {
+      $height: $height - 1px;
+    }
+    @media only screen and (#{$type}-height: $height) {
+      @content;
+    }
+  } @else {
+    @media only screen and (max-height: $height) {
+      @content;
+    }
+  }
+}

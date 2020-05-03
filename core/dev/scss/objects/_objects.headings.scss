@@ -1,0 +1,21 @@
+.o-h {
+  @include font($base-font-size, $font-family-primary, $carbon, $font-weight-bold, $line-height: 120%);
+
+  &1{
+    font-size: 48px;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  &2{
+    font-size: 40px;
+  }
+
+  &3{
+    font-size: 32px;
+  }
+
+  &4{
+    font-size: 24px;
+  }
+}

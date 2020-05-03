@@ -1,0 +1,97 @@
+.select-wrapper.parsley-error > input.select-dropdown,
+input.parsley-error:not([type]),
+input.parsley-error:not([type]):focus,
+input[type=date].parsley-error:not(.browser-default),
+input[type=date].parsley-error:not(.browser-default):focus,
+input[type=datetime-local].parsley-error:not(.browser-default),
+input[type=datetime-local].parsley-error:not(.browser-default):focus,
+input[type=datetime].parsley-error:not(.browser-default),
+input[type=datetime].parsley-error:not(.browser-default):focus,
+input[type=email].parsley-error:not(.browser-default),
+input[type=email].parsley-error:not(.browser-default):focus,
+input[type=number].parsley-error:not(.browser-default),
+input[type=number].parsley-error:not(.browser-default):focus,
+input[type=password].parsley-error:not(.browser-default),
+input[type=password].parsley-error:not(.browser-default):focus,
+input[type=search].parsley-error:not(.browser-default),
+input[type=search].parsley-error:not(.browser-default):focus,
+input[type=tel].parsley-error:not(.browser-default),
+input[type=tel].parsley-error:not(.browser-default):focus,
+input[type=text].parsley-error:not(.browser-default),
+input[type=text].parsley-error:not(.browser-default):focus,
+input[type=time].parsley-error:not(.browser-default),
+input[type=time].parsley-error:not(.browser-default):focus,
+input[type=url].parsley-error:not(.browser-default),
+input[type=url].parsley-error:not(.browser-default):focus,
+textarea.materialize-textarea.parsley-error,
+textarea.parsley-error,
+textarea.parsley-error:focus,
+textarea.materialize-textarea.parsley-error:focus {
+  border-bottom: 1px solid $danger !important;
+
+  + ul + label {
+    color: $danger !important;
+  }
+}
+
+.select-wrapper.valid > input.select-dropdown,
+input.valid:not([type]),
+input.valid:not([type]):focus,
+input[type=date].valid:not(.browser-default),
+input[type=date].valid:not(.browser-default):focus,
+input[type=datetime-local].valid:not(.browser-default),
+input[type=datetime-local].valid:not(.browser-default):focus,
+input[type=datetime].valid:not(.browser-default),
+input[type=datetime].valid:not(.browser-default):focus,
+input[type=email].valid:not(.browser-default),
+input[type=email].valid:not(.browser-default):focus,
+input[type=number].valid:not(.browser-default),
+input[type=number].valid:not(.browser-default):focus,
+input[type=password].valid:not(.browser-default),
+input[type=password].valid:not(.browser-default):focus,
+input[type=search].valid:not(.browser-default),
+input[type=search].valid:not(.browser-default):focus,
+input[type=tel].valid:not(.browser-default),
+input[type=tel].valid:not(.browser-default):focus,
+input[type=text].valid:not(.browser-default),
+input[type=text].valid:not(.browser-default):focus,
+input[type=time].valid:not(.browser-default),
+input[type=time].valid:not(.browser-default):focus,
+input[type=url].valid:not(.browser-default),
+input[type=url].valid:not(.browser-default):focus,
+textarea.materialize-textarea.valid,
+textarea.materialize-textarea.valid:focus {
+  //border: 1px solid $color-success !important;
+
+  //@include box-shadow(0, 2px, 5px, 0, rgba($color-success, 0.30));
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+[type=checkbox].filled-in:not(:checked) + label::after {
+  border-width: 1px;
+}
+[type=checkbox].filled-in-white:not(:checked) + label::after {
+  border: 1px solid $white;
+}
+
+[type=checkbox].filled-in:checked + label::after {
+  border: 1px solid $color-primary;
+  background-color: $color-primary;
+}
+[type=checkbox].filled-in-white:checked + label::after {
+  border: 1px solid $white;
+  background-color: $color-primary;
+}
+
+input[type=submit] {
+  @include mq(tablet-mobile) {
+    font-size: 10px;
+  }
+
+  @include mq(mobile-wide) {
+    min-width: initial;
+    width: 100%;
+  }
+}

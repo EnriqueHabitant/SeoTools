@@ -10,10 +10,27 @@ class KeywordSearch(models.Model):
     depth = models.PositiveSmallIntegerField(verbose_name="Profundidad", blank=True, null=True)
     filters = models.TextField(verbose_name="Filtros", blank=True, null=True)
     result = models.TextField(verbose_name="Resultado", blank=True, null=True)
+    user = models.CharField(verbose_name="Usuario", blank=True, null=True, max_length=100)
 
     class Meta:
         verbose_name = "KeywordSearch"
         verbose_name_plural = "KeywordSearch"
+
+    def __str__(self):
+        return self.method
+
+
+class KeywordBulk(models.Model):
+    method = models.CharField(verbose_name="Método", max_length=50)
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Creado")
+    keywords = models.TextField(verbose_name="Listado de keywords", max_length=250, blank=True, null=True)
+    language = models.CharField(verbose_name="Idioma/País", max_length=70, blank=True, null=True)
+    result = models.TextField(verbose_name="Resultado", blank=True, null=True)
+    user = models.CharField(verbose_name="Usuario", blank=True, null=True, max_length=100)
+
+    class Meta:
+        verbose_name = "KeywordList"
+        verbose_name_plural = "KeywordLists"
 
     def __str__(self):
         return self.method

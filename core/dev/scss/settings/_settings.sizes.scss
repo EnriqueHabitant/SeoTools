@@ -1,0 +1,36 @@
+/* Wrapper */
+$wraper-max-width: 1344px;
+$wraper-narrow--max-width: 1100px;
+
+/* Grid  */
+$grid-space: 4px;
+
+/* Spacing */
+:root {
+  --space-default: 4px;
+  --space-xxxxs: calc(var(--space-default) / 4);
+  --space-xxxs: calc(var(--space-default) / 2);
+  --space-xxs: calc(var(--space-default));
+  --space-xs: calc(2 * var(--space-default));
+  --space-sm: calc(4 * var(--space-default));
+  --space-md: calc(6 * var(--space-default));
+  --space-lg: calc(12 * var(--space-default));
+  --space-xl: calc(24 * var(--space-default));
+  --space-xxl: calc(48 * var(--space-default));
+  --padding-default: 48px;
+  --margin-bottom-default: 48px;
+}
+
+@include mq(tablet-wide) {
+  :root {
+    --padding-default: 32px;
+    --margin-bottom-default: 30px;
+  }
+}
+
+@include mq(tablet) {
+  :root {
+    --padding-default: 16px;
+    --margin-bottom-default: 20px;
+  }
+}

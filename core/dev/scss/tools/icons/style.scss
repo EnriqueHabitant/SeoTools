@@ -1,0 +1,179 @@
+@import "variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?tkdrq8');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?tkdrq8#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?tkdrq8') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?tkdrq8') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?tkdrq8##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="o-icon--"], [class*=" o-icon--"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.o-icon--arrow-slider-bw {
+  &:before {
+    content: $o-icon--arrow-slider-bw;     
+    color: #4d2700;
+  }
+}
+.o-icon--arrow-slider-fw {
+  &:before {
+    content: $o-icon--arrow-slider-fw;     
+    color: #4d2700;
+  }
+}
+.o-icon--arrow-small-bw {
+  &:before {
+    content: $o-icon--arrow-small-bw;     
+    color: #4d2700;
+  }
+}
+.o-icon--arrow-small-fw {
+  &:before {
+    content: $o-icon--arrow-small-fw;     
+    color: #4d2700;
+  }
+}
+.o-icon--blog {
+  &:before {
+    content: $o-icon--blog;     
+    color: #4d2700;
+  }
+}
+.o-icon--bread {
+  &:before {
+    content: $o-icon--bread;     
+    color: #4d2700;
+  }
+}
+.o-icon--coffee {
+  &:before {
+    content: $o-icon--coffee;     
+    color: #4d2700;
+  }
+}
+.o-icon--coffee-2 {
+  &:before {
+    content: $o-icon--coffee-2;     
+    color: #4d2700;
+  }
+}
+.o-icon--comment {
+  &:before {
+    content: $o-icon--comment;     
+    color: #4d2700;
+  }
+}
+.o-icon--coupon {
+  &:before {
+    content: $o-icon--coupon;     
+    color: #4d2700;
+  }
+}
+.o-icon--directions {
+  &:before {
+    content: $o-icon--directions;     
+    color: #4d2700;
+  }
+}
+.o-icon--directions-1 {
+  &:before {
+    content: $o-icon--directions-1;     
+    color: #4d2700;
+  }
+}
+.o-icon--dog {
+  &:before {
+    content: $o-icon--dog;     
+    color: #4d2700;
+  }
+}
+.o-icon--leaf {
+  &:before {
+    content: $o-icon--leaf;     
+    color: #4d2700;
+  }
+}
+.o-icon--leaves {
+  &:before {
+    content: $o-icon--leaves;     
+    color: #4d2700;
+  }
+}
+.o-icon--list {
+  &:before {
+    content: $o-icon--list;     
+    color: #4d2700;
+  }
+}
+.o-icon--map {
+  &:before {
+    content: $o-icon--map;     
+    color: #4d2700;
+  }
+}
+.o-icon--menu {
+  &:before {
+    content: $o-icon--menu;     
+    color: #4d2700;
+  }
+}
+.o-icon--menu-1 {
+  &:before {
+    content: $o-icon--menu-1;     
+    color: #4d2700;
+  }
+}
+.o-icon--navigator {
+  &:before {
+    content: $o-icon--navigator;     
+    color: #4d2700;
+  }
+}
+.o-icon--pdf {
+  &:before {
+    content: $o-icon--pdf;     
+    color: #4d2700;
+  }
+}
+.o-icon--send-1 {
+  &:before {
+    content: $o-icon--send-1;     
+    color: #4d2700;
+  }
+}
+.o-icon--send-2 {
+  &:before {
+    content: $o-icon--send-2;     
+    color: #4d2700;
+  }
+}
+.o-icon--toaster {
+  &:before {
+    content: $o-icon--toaster;     
+    color: #4d2700;
+  }
+}
+.o-icon--tree {
+  &:before {
+    content: $o-icon--tree;     
+    color: #4d2700;
+  }
+}
+

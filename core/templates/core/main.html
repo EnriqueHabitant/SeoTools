@@ -19,46 +19,31 @@
 </head>
 
 <body>
-  <div class="container">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="{% url 'home' %}">
-          <img src="https://habitant.es/wp-content/themes/habitant/assets/images/Habitant-alt.svg" alt="HABITANT GROUP" width="112" height="28">
-        </a>
+  <header class='c-navbar'>
+    <nav class="c-navbar__container u-wrapper" role="navigation" aria-label="main navigation">
+      <div class="c-navbar__container">
+        <div class="c-navbar__logo">
+          <a class="" href="{% url 'home' %}">
+            <img src="https://habitant.es/wp-content/themes/habitant/assets/images/Habitant.svg" alt="HABITANT GROUP">
+          </a>
+        </div>
 
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+        <ul class="c-navbar__list">
+          <li><a href="{% url 'home' %}" class="navbar-item">Inicio</a></li>
+          <li><a href="{% url 'dataforseo:keywordfinder' %}" class="navbar-item">Keyword Search</a></li>
+          {% if request.user.is_staff %}
+            <li><a href="{% url 'dataforseo:keywordbulk' %}" class="navbar-item">Keyword List</a></li>
+          {% endif %}
+        </ul>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a href="{% url 'home' %}" class="navbar-item">Inicio</a>
-          <a href="{% url 'dataforseo:keywordsearch' %}" class="navbar-item">Keyword Search</a>
-          {% if request.user.is_staff %}
-            <a href="{% url 'dataforseo:keywordsearch' %}" class="navbar-item">Keyword List</a>
-          {% endif %}
-
-          <a href="{% url 'dataforseo:keywordsearch' %}" class="navbar-item">Documentation</a>
-        </div>
-
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light">
-                Log in
-              </a>
-            </div>
-          </div>
-        </div>
+      <div class="c-navbar__buttons">
+        <a class="o-button o-button--dark-alt">
+          Acceso
+        </a>
       </div>
     </nav>
-  </div>
+  </header>
 
   {% block content %}
   {% endblock content %}

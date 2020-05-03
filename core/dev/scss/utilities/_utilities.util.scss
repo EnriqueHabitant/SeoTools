@@ -1,0 +1,208 @@
+// Utilities styles
+
+// Container utilities
+
+/* Define un contenedor con una anchura máxima */
+.u-wrapper {
+  max-width: $wraper-max-width;
+  width: 100%;
+  margin: 0 auto;
+
+  @include m(narrow) {
+    max-width: $wraper-narrow--max-width;
+  }
+}
+
+// Position utilities
+
+.u-block {
+  display: block;
+}
+
+.u-relative {
+  position: relative;
+}
+
+.u-clearfix {
+  @include clearfix;
+}
+
+// Text utilities
+
+/* Alinear texto */
+@each $align in left, center, right {
+  .u-text-#{$align} {
+    text-align: unquote($align) !important;
+  }
+}
+
+/* Convierte las letras a mayúsculas */
+.u-text-uppercase {
+  text-transform: uppercase;
+}
+
+// Visibility utilities
+
+/* Mostrar solo en desktop */
+.u-show-only-on-desktop {
+  @include mq(tablet-wide, max) {
+    display: none;
+  }
+}
+
+/* Mostrar solo en tablet */
+.u-show-only-on-tablet {
+  display: none;
+
+  @include mq(tablet-wide, max) {
+    display: block;
+  }
+
+  @include mq(mobile-wide, max) {
+    display: none;
+  }
+}
+
+/* Mostrar solo en mobile */
+.u-show-only-on-mobile {
+  display: none;
+
+  @include mq(mobile-wide, max) {
+    display: block;
+  }
+}
+
+/* Ocultar siempre */
+.u-hide {
+  display: none !important;
+}
+
+/* Ocultar en desktop */
+.u-hide-on-desktop {
+  display: none;
+
+  @include mq(tablet-wide, max) {
+    display: block;
+  }
+}
+
+/* Ocultar en tablet */
+.u-hide-on-tablet {
+  @include mq(tablet, max) {
+    display: none;
+  }
+}
+
+/* Ocultar en mobile */
+.u-hide-on-mobile {
+  @include mq(mobile-wide, max) {
+    display: none;
+  }
+}
+
+/* Ocultar en IE */
+.u-hide-on-ie {
+  @include only-ie {
+    display: none !important;
+  }
+}
+
+/* Ocultar en Safari */
+.u-hide-on-safari {
+  @include only-safari {
+    display: none !important;
+  }
+}
+
+// Box model utilities
+
+.u-mobile-margin-0 {
+  @include mq(mobile) {
+    margin: 0 !important;
+  }
+}
+
+.u-mobile-padding-0 {
+  @include mq(mobile) {
+    padding: 0 !important;
+  }
+}
+
+.u-margin-left-0 {
+  margin-left: 0;
+}
+
+.u-margin-top-0 {
+  margin-top: 0;
+}
+
+.u-margin-top-60{
+  margin-top: 60px;
+}
+
+.u-margin-right-0 {
+  margin-right: 0;
+}
+
+.u-margin-bottom-0 {
+  margin-bottom: 0;
+}
+
+.u-padding-left-0 {
+  padding-left: 0;
+}
+
+.u-padding-top-0 {
+  padding-top: 0;
+}
+
+.u-padding-right-0 {
+  padding-right: 0;
+}
+
+.u-padding-bottom-0 {
+  padding-bottom: 0;
+}
+
+.u-remove-spaces-sides {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.u-remove-padding-sides {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.u-remove-spaces {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.js-sticky {
+  &.stick {
+    position: fixed;
+    top: 100px;
+    width: 230px;
+  }
+
+  &.stick-bottom {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.js-object-fit img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}

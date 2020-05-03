@@ -1,0 +1,21 @@
+.o-tabs {
+  margin-bottom: 30px;
+  border-bottom: 2px solid $carbon;
+  @include flexbox;
+
+  @include e(items) {
+    cursor: pointer;
+    text-transform: capitalize;
+    @include font($base-font-size, $font-family-primary, $carbon, $font-weight-medium, $line-height: 100%);
+    @include flexbox;
+
+    &.is-selected {
+      background-color: $carbon;
+      color: $white;
+    }
+
+    span {
+      padding: 18px 15px;
+    }
+  }
+}

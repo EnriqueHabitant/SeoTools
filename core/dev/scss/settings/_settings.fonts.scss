@@ -1,0 +1,56 @@
+// Font weights
+
+$font-weight-thin: 100;
+$font-weight-extralight: 200;
+$font-weight-light: 300;
+$font-weight-regular: normal;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: bold;
+$font-weight-extrabold: 800;
+$font-weight-black: 900;
+
+// IBM Plex Sans
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans', normal, $font-weight-regular);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-SemiBold', normal, $font-weight-semibold);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-ThinItalic', italic, $font-weight-thin);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-Italic', italic, $font-weight-regular);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-ExtraLightItalic', italic, $font-weight-extralight);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-Light', normal, $font-weight-light);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-ExtraLight', normal, $font-weight-extralight);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-Thin', normal, $font-weight-thin);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-SemiBoldItalic', italic, $font-weight-semibold);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-BoldItalic', italic, $font-weight-bold);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-LightItalic', italic, $font-weight-light);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-MediumItalic', italic, $font-weight-medium);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-Medium', normal, $font-weight-medium);
+@include fontFace('IBM Plex Sans', '#{$url-fonts}IBM_Plex_Sans/hinted-IBMPlexSans-Bold', normal, $font-weight-bold);
+// Poppins
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-Regular', normal, $font-weight-regular);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-SemiBold', normal, $font-weight-semibold);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-ThinItalic', italic, $font-weight-thin);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-Italic', italic, $font-weight-regular);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-ExtraLightItalic', italic, $font-weight-extralight);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-Light', normal, $font-weight-light);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-ExtraLight', normal, $font-weight-extralight);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-Thin', normal, $font-weight-thin);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-SemiBoldItalic', italic, $font-weight-semibold);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-BoldItalic', italic, $font-weight-bold);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-LightItalic', italic, $font-weight-light);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-MediumItalic', italic, $font-weight-medium);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-Medium', normal, $font-weight-medium);
+@include fontFace('Poppins', '#{$url-fonts}Poppins/Poppins-Bold', normal, $font-weight-bold);
+
+// Font variables
+$font-family-primary: "Poppins", sans-serif;
+$font-family-secondary: "IBM Plex Sans";
+$font-family-third: "IBM Plex Sans";
+
+$base-font-size: 16px;
+$mobile-base-font-size: 14px;
+$base-line: 28px;
+$browser-context: 16;
+
+$color-font-primary: $black;
+$color-font-secondary: $color-secondary;
+$color-font-tertiary: $color-secondary;

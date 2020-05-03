@@ -1,0 +1,40 @@
+/* ==========================================================================
+    Hacks mixins
+========================================================================== */
+
+/* Only IE */
+@mixin only-ie() {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @content;
+  }
+}
+
+/* Only Safari */
+@mixin only-safari() {
+  &:not(:root:root) {
+    @content;
+  }
+}
+
+/* Only Edge */
+@mixin only-edge() {
+  @supports (-ms-ime-align:auto) {
+    @content;
+  }
+}
+
+/* Ellipsis Hack */
+@mixin ellipsis-hack($num-lines, $line-height: 16px, $important: null) {
+  display: -webkit-box $important;
+  white-space: normal $important;
+  -webkit-line-clamp: $num-lines $important;
+  -webkit-box-orient: vertical $important;
+  overflow: hidden $important;
+  line-height: $line-height;
+  max-height: $line-height * $num-lines;
+  //height: 100%; //Safari
+
+  @include only-ie {
+    display: block !important;
+  }
+}
