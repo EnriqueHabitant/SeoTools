@@ -52,6 +52,9 @@
         </div>
       </div>
     </div>
+
+    {% comment %} Resultado de la keyword deseada {% endcomment %}
+    {% if resultado != None%}
     <div class="u-wrapper u-margin-top-60">
       <div class="o-section__container">
         <div class="c-table c-table--white">
@@ -63,45 +66,39 @@
                 <th><abbr title="Volumen de búsquedas">SV</abbr></th>
                 <th><abbr title="Dificultad">Dif</abbr></th>
                 <th><abbr title="Coste Por Clic">CPC</abbr></th>
-                <th><abbr title="Feb, 2020">Feb, 2020</abbr></th>
-                <th><abbr title="Jan, 2020">Jan, 2020</abbr></th>
-                <th><abbr title="Dec, 2019">Dec, 2019</abbr></th>
-                <th><abbr title="Nov, 2019">Nov, 2019</abbr></th>
-                <th><abbr title="Oct, 2019">Oct, 2019</abbr></th>
-                <th><abbr title="Sep, 2019">Sep, 2019</abbr></th>
-                <th><abbr title="Aug, 2019">Aug, 2019</abbr></th>
-                <th><abbr title="Jul, 2019">Jul, 2019</abbr></th>
-                <th><abbr title="Jun, 2019">Jun, 2019</abbr></th>
-                <th><abbr title="May, 2019">May, 2019</abbr></th>
-                <th><abbr title="Apr, 2019">Apr, 2019</abbr></th>
-                <th><abbr title="Mar, 2019">Mar, 2019</abbr></th>
+                {% for fecha in meses_atras %}
+                  <th><abbr title="{{fecha}}">{{fecha}}</abbr></th>
+                {% endfor %}
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>ropa deportiva mujer</td>
-                <td>8100</td>
-                <td>1.0</td>
-                <td>0.37</td>
-                <td>None</td>
-                <td>12100</td>
-                <td>8100</td>
-                <td>9900</td>
-                <td>9900</td>
-                <td>9900</td>
-                <td>6600</td>
-                <td>5400</td>
-                <td>5400</td>
-                <td>6600</td>
-                <td>6600</td>
-                <td>9900</td>
-              </tr>
+              {% for method in resultado %}
+                {% if forloop.first %}
+                  {% for res in method.items %}
+                    {% if res.keyword == method.seed_keyword %}
+                      <tr onClick="toggleSelected(this)">
+                        <td>{{res.keyword}}</td>
+                        <td>{{res.keyword_info.search_volume}}</td>
+                        <td>{{res.keyword_info.competition|ifnumbrefloat:2}}</td>
+                        <td>{{res.keyword_info.cpc|ifnumbrefloat:2}}</td>
+
+                        {% comment %} Resultados ordenados {% endcomment %}
+                        {% for das in meses_atras|get_value:res.keyword_info.monthly_searches %}
+                          <td>{{das}}</td>
+                        {% endfor %}
+
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
             </tbody>
           </table>
         </div>
       </div>
     </div>
-  </div>
+    {% endif %}
+    
   </section>
 
 {% if resultado != None%}

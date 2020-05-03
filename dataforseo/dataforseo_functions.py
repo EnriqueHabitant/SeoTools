@@ -61,6 +61,7 @@ def related_keywords_v3(keyword, country_code, language_code, depth, limit, filt
 
     response = client.post("/v3/dataforseo_labs/related_keywords/live", post_data)
     if response["status_code"] == 20000:
+        print(response)
         # Si hay resultados
         if response["tasks"][0]["result_count"] != 0:
             # do something with result
