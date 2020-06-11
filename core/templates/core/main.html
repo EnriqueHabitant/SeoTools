@@ -29,16 +29,18 @@
         </div>
 
         <ul class="c-navbar__list">
-          <li><a href="{% url 'home' %}" class="navbar-item">Inicio</a></li>
-          <li><a href="{% url 'dataforseo:keywordfinder' %}" class="navbar-item">Keyword Search</a></li>
+          <li><a href="{% url 'home' %}" class="">Inicio</a></li>
+          <li><a href="{% url 'dataforseo:keywordfinder' %}" class="">Keyword Search</a></li>
           {% if request.user.is_staff %}
-            <li><a href="{% url 'dataforseo:keywordbulk' %}" class="navbar-item">Keyword List</a></li>
+            <li><a href="{% url 'dataforseo:keywordbulk' %}" class="">Keyword List</a></li>
           {% endif %}
+          <li><a href="{% url 'dataforseo:keywordfinder' %}" class="">Serp</a></li>
+          <li><a href="{% url 'dataforseo:keywordfinder' %}" class="">Similaridad</a></li>
         </ul>
       </div>
 
       <div class="c-navbar__buttons">
-        <a class="o-button o-button--dark-alt">
+        <a class="o-button o-button--dark-alt" href="/admin">
           Acceso
         </a>
       </div>
