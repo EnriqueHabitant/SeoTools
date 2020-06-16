@@ -6,7 +6,7 @@ from dataforseo.urls import dataforseo_patterns
 
 urlpatterns = [
     path('', HomeView.as_view(), name="home"),
-    path('keyword-research/', include(dataforseo_patterns)),
+    path('', include(dataforseo_patterns)),
 
     # Path to admin
     path('admin/', admin.site.urls, name="admin"),

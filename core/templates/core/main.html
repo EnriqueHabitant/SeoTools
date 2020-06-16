@@ -34,8 +34,8 @@
           {% if request.user.is_staff %}
             <li><a href="{% url 'dataforseo:keywordbulk' %}" class="">Keyword List</a></li>
           {% endif %}
-          <li><a href="{% url 'dataforseo:keywordfinder' %}" class="">Serp</a></li>
-          <li><a href="{% url 'dataforseo:keywordfinder' %}" class="">Similaridad</a></li>
+          <li><a href="{% url 'dataforseo:serp_compare' %}" class="">Serp</a></li>
+          <li><a href="{% url 'dataforseo:serp_compare' %}" class="">Similaridad</a></li>
         </ul>
       </div>
 
