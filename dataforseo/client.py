@@ -4,7 +4,9 @@ from json import loads
 from json import dumps
 
 class RestClient:
-    domain = "api.dataforseo.com"
+    # domain = "api.dataforseo.com"
+    domain = "sandbox.dataforseo.com"
+
 
     def __init__(self, username, password):
         # USER: "finanzas@habitant.es"

@@ -17,13 +17,15 @@ dataforseo_patterns = (
 
         # URLs de keyword-bulk
         path(PATH_KEYWORD+PATH_BULK, KeywordBulkCreateView.as_view(), name="keywordbulk"),
+        path(PATH_KEYWORD+PATH_BULK+'<int:pk>/', KeywordBulkDetailView.as_view(), name="keywordbulk_detail"),
+        path(PATH_KEYWORD+PATH_BULK+'<keywords>/<country_code>/<language_code>', keyword_list),
 
         # URLs de SERP
         path(PATH_SERP, KeywordBulkCreateView.as_view(), name="serp_compare"),
 
         # URLs includes
-        path('includes/filter/', Filter.as_view()),
-        path('includes/loading/', Loading.as_view()),
+        path(PATH_KEYWORD+'includes/filter/', Filter.as_view()),
+        path(PATH_KEYWORD+'includes/loading/', Loading.as_view()),
     ],
     "dataforseo",
 )

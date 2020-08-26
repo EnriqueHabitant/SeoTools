@@ -2,29 +2,63 @@
 document.querySelectorAll('#id_language option').forEach((e) => e.text === 'es/ES' ? e.selected = true : '')
 
 // Petición a la API dataforseo y registro del resultado en la BBDD.
-document.querySelector('#send_keywordFinder').addEventListener('click', async () => {
-  event.preventDefault()
-  document.querySelector('#id_user').value = document.querySelector('#user').value
-  const form = document.querySelector('#keywordFinder')
-  const dataForm = new FormData(form)
-  const lang = dataForm.get('language').split('/')
-  // const loading = document.querySelector('#is-loading')
-  // loading.classList.toggle('is-active')
-  // Comprobación si tenemos o no Filtros
-  const filters = getFilters() === '' ? 'False' : getFilters()
+/**
+ * Keyword Finder
+ */
+if (document.querySelector('#send_keywordFinder')) {
+  document.querySelector('#send_keywordFinder').addEventListener('click', async () => {
+    event.preventDefault()
+    document.querySelector('#id_user').value = document.querySelector('#user').value
+    const form = document.querySelector('#keywordFinder')
+    const dataForm = new FormData(form)
+    const lang = dataForm.get('language').split('/')
+    // const loading = document.querySelector('#is-loading')
+    // loading.classList.toggle('is-active')
+    // Comprobación si tenemos o no Filtros
+    const filters = getFilters() === '' ? 'False' : getFilters()
+  
+    // isLoading();
+  
+    // /keyword-search/related_keywords/[KEYWORD]/[COUNTRY_CODE]/[LANGUAGE_CODE]/[DEPTH]/[LIMIT]/
+    const url = `/keyword-research/keyword-finder/${dataForm.get('keyword')}/${lang[0]}/${lang[1]}/${dataForm.get('depth')}/${dataForm.get('limit')}/${filters}`
+    await fetch(url)
+      .then(data => data.json())
+      .then(data => {
+        form.querySelector('#id_result').value = JSON.stringify(data)
+      })
+      .then(() => form.submit())
+  })
+}
 
-  // isLoading();
+/**
+ * Keyword List
+ */
+if (document.querySelector('#send_keywordList')) {
+  document.querySelector('#send_keywordList').addEventListener('click', async () => {
+    event.preventDefault()
+    document.querySelector('#id_user').value = document.querySelector('#user').value
+    const form = document.querySelector('#keywordList')
+    const dataForm = new FormData(form)
+    const lang = dataForm.get('language').split('/')
+    // const loading = document.querySelector('#is-loading')
+    // loading.classList.toggle('is-active')
+  
+    // isLoading();
+  
+    // /keyword-search/keyword-list/[KEYWORD]/[COUNTRY_CODE]/[LANGUAGE_CODE]
+    const url = `/keyword-research/keyword-list/${dataForm.get('keywords').split('\n')}/${lang[0]}/${lang[1]}`
+    await fetch(url)
+      .then(data => data.json())
+      .then(data => {
+        form.querySelector('#id_result').value = JSON.stringify(data)
+      })
+      .then(() => form.submit())
+  })
 
-  // /keyword-search/related_keywords/[KEYWORD]/[COUNTRY_CODE]/[LANGUAGE_CODE]/[DEPTH]/[LIMIT]/
-  const url = `/keyword-research/keyword-finder/${dataForm.get('keyword')}/${lang[0]}/${lang[1]}/${dataForm.get('depth')}/${dataForm.get('limit')}/${filters}`
-  await fetch(url)
-    .then(data => data.json())
-    .then(data => {
-      form.querySelector('#id_result').value = JSON.stringify(data)
-    })
-    .then(() => form.submit())
-})
+  document.querySelector('#id_keywords').addEventListener('keyup', (event) => document.querySelector('#n_keywords').innerText = event.target.value.split('\n').length)
+}
 
+//** Funciones varias **//
 /**
  * Añadir filtro (fila)
  */
@@ -136,21 +170,23 @@ function copyAllRows(target) {
 /**
  * Mostrar siguiente tabla de resultados
  */
-document.querySelector('.js-tabs').addEventListener('click', (object) => {
-  idTab = object.target.parentNode.id
-  tab = object.target.parentNode
-
-  if (tab.classList[0] === 'o-tabs__items') {
-    document.querySelectorAll('.js-tabs .o-tabs__items').forEach(e => {
-      e.id === idTab ? e.classList.add('is-selected') : e.classList.remove('is-selected')
-    })
+if (document.querySelector('.js-tabs')) {
+  document.querySelector('.js-tabs').addEventListener('click', (object) => {
+    idTab = object.target.parentNode.id
+    tab = object.target.parentNode
   
-    document.querySelectorAll('.c-table').forEach(e => {
-      e.id === (`table-${idTab}`) ? e.classList.add('is-active') : e.classList.remove('is-active')
-    })
-  }
-
-})
+    if (tab.classList[0] === 'o-tabs__items') {
+      document.querySelectorAll('.js-tabs .o-tabs__items').forEach(e => {
+        e.id === idTab ? e.classList.add('is-selected') : e.classList.remove('is-selected')
+      })
+    
+      document.querySelectorAll('.c-table').forEach(e => {
+        e.id === (`table-${idTab}`) ? e.classList.add('is-active') : e.classList.remove('is-active')
+      })
+    }
+  
+  })
+}
 
 /**
  * Carga de modal Loading

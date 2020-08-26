@@ -1,82 +1,83 @@
 {% extends 'core/main.html' %}
 {% load dataforseo_extras %}
-{% load static %}
 {% block title %}Habitant Seo{% endblock %}
 
 {% block content %}
-  <section class="section">
-    <div class="container"> 
-      <form id="keywordBulk" action="{% url 'dataforseo:keywordbulk' %}" method="post">{% csrf_token %}
-        <div class="columns field is-grouped">
-          <div class="column field">
-            <label class="label">{{form.keywords.label}}:</label>
-            <div class="control">
-              {{form.keywords}}
-            </div>
-          </div>
+{% if resultado == None%}
+<section class="c-header">
+  <div class="c-header__container u-wrapper">
+    <div class="c-header__content">
+      <h1 class="o-h1 u-text-center">Keyword List</h1>
+      <p class="o-subtitle u-text-center">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="o-section o-section--bg-dark">
+  <div class="u-wrapper u-wrapper--narrow"> 
+    <div class="o-section__container">
+      <form id="keywordList" action="{% url 'dataforseo:keywordbulk' %}" method="post">{% csrf_token %}
+
+        <div class="c-form-bulk__group">
+          <p class="">Número de keywords: <strong id="n_keywords">0</strong></p>
+          <label class="label">{{form.keywords.label}}:</label>
+          {{form.keywords}}
+
+          <button id="send_keywordList" class="o-button">Enviar</button>
         </div>
 
-        
-
-        <div class="cloumns field is-grouped is-grouped-right">
-          <div class="column field">
-            <label class="label" for="">{{form.language.label}}</label>
-            <div class="select">
-              {{form.language}}
-            </div>
-          </div>
-          <div class="column">
-            <div class="control">
-              <button id="send_keywordFinder" class="button is-link">Enviar</button>
-            </div>
-          </div>
+        <div class="c-form-bulk__group">
+          <label class="label" for="">{{form.language.label}}</label>
+          {{form.language}}
         </div>
+
 
         {% comment %} Campos ocultos del formulario {% endcomment %}
-        <div class="">
+        <div class="u-hide">
           {{form.method}}
-          <input type="text" class="is-hidden" id="user" value="{{user.username}}" disabled>
+          <input type="text" id="user" value="{{user.username}}" disabled>
           {{form.user}}
           {{form.result}}
         </div>
       </form>
     </div>
-  </section>
+  </div>
+</section>
 
-  {% for method in resultado %}
-    <section class="section">
-      <div class="container">
-        <div class="column">
-          <h2 class="title is-3">Keywords {{method.name}}</h2>
-          <p>Resultados mostrados: <strong>{{method.items_count}}</strong></p>
-          <p>Resultados encontrados: <strong>{{method.total_count}}</strong></p>
-        </div>
-        <div class="column">
-          <button class="button is-link" onClick="copySelectedRows(this)">Copiar seleccionadas</button>
-          <button class="button is-link" onClick="copyAllRows(this)">Copiar todas</button>
+{% if resultado != None%}
+  <section class="o-section">
+    <div class="u-wrapper">
+      <div class="c-table">
+        <h2 class="o-h4">Resultados de palabras claves</h2>
+        <div class="c-table__res">
+          <div class="c-table__res__buttons">
+            <button class="o-button o-button--dark" onClick="copySelectedRows(this)">Copiar seleccionadas</button>
+            <button class="o-button o-button--dark" onClick="copyAllRows(this)">Copiar todas</button>
+          </div>
 
-          <table class="table">
+          <table class="c-table__res__table">
             <thead>
               <tr>
-                <th><abbr title="Keyword">Keyword</abbr></th>
-                <th><abbr title="Search Volume">Search Volume</abbr></th>
-                <th><abbr title="Competition">Competition</abbr></th>
-                <th><abbr title="CPC">CPC</abbr></th>
+                <th><abbr title="Palabra clabe">Keyword</abbr></th>
+                <th><abbr title="Volumen de búsquedas">SV</abbr></th>
+                <th><abbr title="Dificultad">Dif</abbr></th>
+                <th><abbr title="Coste Por Clic">CPC</abbr></th>
                 {% for fecha in meses_atras %}
                   <th><abbr title="{{fecha}}">{{fecha}}</abbr></th>
                 {% endfor %}
               </tr>
             </thead>
             <tbody>
-            {% for res in method.items %}
+            {% for res in resultado %}
               <tr onClick="toggleSelected(this)">
                 <td>{{res.keyword}}</td>
-                <td>{{res.keyword_info.search_volume}}</td>
-                <td>{{res.keyword_info.competition|ifnumbrefloat:2}}</td>
-                <td>{{res.keyword_info.cpc|ifnumbrefloat:2}}</td>
+                <td>{{res.search_volume}}</td>
+                <td>{{res.competition|ifnumbrefloat:2}}</td>
+                <td>{{res.cpc|ifnumbrefloat:2}}</td>
 
-                {% comment %} Resultados ordenados {% endcomment %}
-                {% for das in meses_atras|get_value:res.keyword_info.monthly_searches %}
+                {% comment %} Resultados ordenados por fecha {% endcomment %}
+                {% for das in meses_atras|get_value:res.monthly_searches %}
                   <td>{{das}}</td>
                 {% endfor %}
 
@@ -86,23 +87,9 @@
           </table>
         </div>
       </div>
-    </section>
-  {% endfor %}
-
-  <div class="modal" id="is-loading">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <p class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="">
-      </p>
     </div>
-    <button class="modal-close is-large" aria-label="close"></button>
-  </div>
-
-  {% comment %} scripts {% endcomment %}
-  {% if debug %}
-    <script src="{% static '/dataforseo/js/app.js' %}"></script>
-  {% else %}
-    <script src="static/dataforseo/js/app.min.js"></script>
-  {% endif %}
+  </section>
+{% endif %}
 {% endblock content %}
+
+{% block scripts %}{% include 'dataforseo/includes/scripts.html' %}{% endblock scripts %}

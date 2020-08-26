@@ -5,8 +5,8 @@ from django.urls import reverse, reverse_lazy
 import json, datetime, calendar
 from operator import itemgetter
 from django.template.base import Variable
-from .dataforseo_functions import related_keywords_v3, keyword_suggestions_v3
-from .models import KeywordSearch, KeywordBulk
+from .dataforseo_functions import related_keywords_v3, keyword_suggestions_v3, bulk_search_volume_v3
+from .models import KeywordSearch, KeywordList
 from .forms import KeywordFinderForm, KeywordBulkForm
 
 # Create your views here.
@@ -72,14 +72,58 @@ class KeywordFinderDetailView(DetailView):
     
 # KewordList
 class KeywordBulkCreateView(CreateView):
-    model = KeywordBulk
+    model = KeywordList
     template_name = "dataforseo/keywordbulk_form.html"
     form_class = KeywordBulkForm
 
     def get_success_url(self, *args, **kwargs):        
         print(self.object.pk)
-        return reverse_lazy('dataforseo:keywordfinder_detail', kwargs={'pk':self.object.pk})
+        return reverse_lazy('dataforseo:keywordbulk_detail', kwargs={'pk':self.object.pk})
 
+class KeywordBulkDetailView(DetailView):
+    model = KeywordList
+    template_name = "dataforseo/keywordbulk_form.html"
+    form = KeywordBulkForm()
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(KeywordBulkDetailView, self).get_context_data(**kwargs)
+        # Funciones EXTRAS.
+        def monthdelta(date, delta):
+            m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
+            if not m: m = 12
+            d = min(date.day, calendar.monthrange(y, m)[1])
+            return date.replace(day=d,month=m, year=y)
+        def _property_resolver(arg):
+            try:
+                float(arg)
+            except ValueError:
+                return Variable(arg).resolve
+            else:
+                return itemgetter(arg)
+        # Cargando JSON.
+        res = json.loads(context['object'].result)
+
+        for b in res['result'][0]:
+            for a in b['monthly_searches']:
+                date_str = "1"+"/"+str(a['month'])+"/"+str(a['year'])
+                format_str = '%d/%m/%Y'
+                datetime_obj = datetime.datetime.strptime(date_str, format_str)
+                a["date"]= datetime_obj
+
+        count = 1
+        meses_atras = list()
+        while count < 13:
+            next_month = monthdelta(datetime.datetime.now(), -(count+1))
+            meses_atras.append(next_month.strftime("%b, %Y"))
+            count = count+1         
+
+        context['resultado'] = res['result'][0]
+        context['form'] = self.form
+        context['meses_atras'] = meses_atras
+
+        return context
+    
 
 # Vistas de Dataforseo
 def keyword_research(request, keyword, country_code, language_code, depth, limit, filters):
@@ -97,6 +141,14 @@ def keyword_research(request, keyword, country_code, language_code, depth, limit
 
     resultados['result'].append(keyword_suggestions_v3(keyword, country_code, language_code, limit, filtros))
     resultados['result'].append(related_keywords_v3(keyword, country_code, language_code, depth, limit, filtros))
+    return  JsonResponse(resultados)
+
+def keyword_list(request, keywords, country_code, language_code):
+    resultados = dict()
+    resultados['result'] = list()
+
+    resultados['result'].append(bulk_search_volume_v3(keywords.split(','), country_code, language_code))
+
     return  JsonResponse(resultados)
 
 # Template del includes

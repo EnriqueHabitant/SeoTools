@@ -1,5 +1,5 @@
 from django import forms
-from .models import KeywordSearch, KeywordBulk
+from .models import KeywordSearch, KeywordList
 from .dataforseo_functions import paises_v3
 
 class KeywordFinderForm(forms.ModelForm):
@@ -23,14 +23,14 @@ class KeywordFinderForm(forms.ModelForm):
 
 class KeywordBulkForm(forms.ModelForm):
     class Meta:
-        model = KeywordBulk
+        model = KeywordList
         fields = ['method', 'keywords', 'language', 'result', 'user']
         widgets = {
-            'method': forms.TextInput(attrs={'class':'is-hidden', 'value':'KeywordList'}),
+            'method': forms.TextInput(attrs={'class':'', 'value':'KeywordList'}),
             'keywords': forms.Textarea(attrs={'class':'textarea', 'placeholder':'Keywords'}),
             'language': forms.Select(attrs={}, choices=paises_v3()),
-            'result': forms.Textarea(attrs={'class':'is-hidden'}),
-            'user': forms.TextInput(attrs={'class':'is-hidden'}),
+            'result': forms.Textarea(),
+            'user': forms.TextInput(),
         }
         labels = {
             'method':'', 'keywords':'Listado de keywords', 'language': 'Idioma/Región', 'result':'', 'user':''

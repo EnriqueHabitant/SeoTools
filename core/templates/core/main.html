@@ -30,7 +30,7 @@
 
         <ul class="c-navbar__list">
           <li><a href="{% url 'home' %}" class="">Inicio</a></li>
-          <li><a href="{% url 'dataforseo:keywordfinder' %}" class="">Keyword Search</a></li>
+          <li><a href="{% url 'dataforseo:keywordfinder' %}" class="">Keyword Finder</a></li>
           {% if request.user.is_staff %}
             <li><a href="{% url 'dataforseo:keywordbulk' %}" class="">Keyword List</a></li>
           {% endif %}
@@ -56,6 +56,9 @@
   {% else %}
     <script src="static/core/js/app.min.js"></script>
   {% endif %}
+
+  {% block scripts %}
+  {% endblock scripts %}
 </body>
 
 </html>

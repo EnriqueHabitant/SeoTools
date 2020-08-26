@@ -1,0 +1,7 @@
+{% comment %} scripts {% endcomment %}
+{% load static %}
+{% if debug %}
+<script src="{% static '/dataforseo/js/app.js' %}"></script>
+{% else %}
+<script src="static/dataforseo/js/app.min.js"></script>
+{% endif %}

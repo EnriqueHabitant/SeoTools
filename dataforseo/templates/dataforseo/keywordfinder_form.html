@@ -1,6 +1,5 @@
 {% extends 'core/main.html' %}
 {% load dataforseo_extras %}
-{% load static %}
 {% block title %}Habitant Seo{% endblock %}
 
 {% block content %}
@@ -170,12 +169,6 @@
     </div>
   </section>
 {% endif %}
-
-
-  {% comment %} scripts {% endcomment %}
-  {% if debug %}
-    <script src="{% static '/dataforseo/js/app.js' %}"></script>
-  {% else %}
-    <script src="static/dataforseo/js/app.min.js"></script>
-  {% endif %}
 {% endblock content %}
+
+{% block scripts %}{% include 'dataforseo/includes/scripts.html' %}{% endblock scripts %}

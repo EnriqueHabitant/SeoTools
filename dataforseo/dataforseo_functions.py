@@ -113,25 +113,19 @@ def keyword_suggestions_v3(keyword, country_code, language_code, limit, filters)
             % (response["status_code"], response["status_message"])
         )
 
-# Funciones V2
 # Search Volume Bulk
-def bulk_search_volume(parameter_list):
-    keyword_list = [
-        dict(
-            language="en",
-            loc_name_canonical="United States",
-            keys=[
-                "average page rpm adsense",
-                "adsense blank ads how long",
-                "leads and prospects",
-            ],
-        )
-    ]
-    response = client.post("/v2/kwrd_sv_batch", dict(data=keyword_list))
-    if response["status"] == "error":
-        print(
-            "error. Code: %d Message: %s"
-            % (response["error"]["code"], response["error"]["message"])
-        )
+def bulk_search_volume_v3(keywords, country_code, language_code):
+    post_data = dict()
+    
+    post_data[len(post_data)] = dict(
+        location_code=country_code,
+        language_code=language_code,
+        keywords=keywords
+    )
+    
+    response = client.post("/v3/keywords_data/google/search_volume/live", post_data)
+    
+    if response["status_code"] == 20000:
+        return response["tasks"][0]["result"]
     else:
-        print(response["results"])
+        print("error. Code: %d Message: %s" % (response["status_code"], response["status_message"]))
